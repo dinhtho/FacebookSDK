@@ -39,7 +39,7 @@ PackageInfo packageInfo = null;
         }
 ```
 
-<img src="https://github.com/sromku/android-simple-facebook/wiki/images/sample-app.png" width="800"/>
+<img src="https://github.com/dinhtho/FacebookSDK/blob/master/image2.png" width="800"/>
 
 ## Add to strings.xml
 ```
@@ -52,4 +52,4 @@ PackageInfo packageInfo = null;
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 ```
-<img src="https://github.com/sromku/android-simple-facebook/wiki/images/sample-app.png" width="800"/>
+<img src="https://github.com/dinhtho/FacebookSDK/blob/master/image.png" width="800"/>
