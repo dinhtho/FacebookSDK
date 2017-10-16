@@ -1,4 +1,5 @@
 # Facebook SDK
+login at https://developers.facebook.com/
 ## Add to build.gradle(project) above dependencies lines
 ```
 repositories {
