@@ -1,3 +1,6 @@
+{::nomarkdown}
+
+
 <!DOCTYPE html>
 <!-- saved from url=(0102)https://nhutstudio.com/lap-trinh-android-nang-cao/facebook-sdk-trong-android-dang-ky-facebook-api.html -->
 <html class="js" lang="vi" prefix="og: http://ogp.me/ns#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -896,3 +899,5 @@ var windowOpen;
 
 
 <img src="./README_files/g.gif" alt=":)" width="6" height="5" id="wpstats"></body></html>
+
+{:/}
