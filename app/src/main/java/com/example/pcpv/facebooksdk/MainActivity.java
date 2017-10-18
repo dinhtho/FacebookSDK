@@ -20,11 +20,14 @@ import com.facebook.FacebookAuthorizationException;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
 import com.facebook.share.DeviceShareDialog;
 import com.facebook.share.ShareApi;
@@ -34,6 +37,9 @@ import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.LikeView;
 import com.facebook.share.widget.ShareDialog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,6 +53,7 @@ public class MainActivity extends FragmentActivity {
     private final String PENDING_ACTION_BUNDLE_KEY =
             "com.example.hellofacebook:PendingAction";
 
+    private LoginButton btLogin;
     private Button postStatusUpdateButton;
     private Button postPhotoButton;
     private ProfilePictureView profilePictureView;
@@ -109,14 +116,44 @@ public class MainActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
 
         callbackManager = CallbackManager.Factory.create();
-
-        LoginManager.getInstance().registerCallback(callbackManager,
+        btLogin =(LoginButton)findViewById(R.id.login_button) ;
+        btLogin.setReadPermissions(Arrays.asList(
+                "public_profile", "email", "user_birthday", "user_friends"));
+        btLogin.registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
+                        Log.i(TAG, "onSuccess: ");
+
+                        GraphRequest request = GraphRequest.newMeRequest(
+                                loginResult.getAccessToken(),
+                                new GraphRequest.GraphJSONObjectCallback() {
+                                    @Override
+                                    public void onCompleted(JSONObject object, GraphResponse response) {
+                                        Log.v("LoginActivity", response.toString());
+
+                                        // Application code
+                                        try {
+                                            String email = object.getString("email");
+                                            String birthday = object.getString("birthday");
+                                            Log.i(TAG, "onCompleted: "+email);
+                                            Log.i(TAG, "onCompleted: "+birthday);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                         // 01/31/1980 format
+                                    }
+                                });
+                        Bundle parameters = new Bundle();
+                        parameters.putString("fields", "id,name,email,gender,birthday");
+                        request.setParameters(parameters);
+                        request.executeAsync();
+
                         handlePendingAction();
                         updateUI();
                     }
@@ -159,7 +196,7 @@ public class MainActivity extends FragmentActivity {
             pendingAction = PendingAction.valueOf(name);
         }
 
-        setContentView(R.layout.activity_main);
+
 
         profileTracker = new ProfileTracker() {
             @Override
