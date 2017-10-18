@@ -40,7 +40,7 @@ PackageInfo packageInfo = null;
         }
 ```
 
-<img src="https://github.com/dinhtho/FacebookSDK/blob/master/image2.png" width="800"/>
+<img src="https://github.com/dinhtho/FacebookSDK/blob/master/image2.png" width="500"/>
 
 ## Add to strings.xml
 ```
@@ -53,4 +53,8 @@ PackageInfo packageInfo = null;
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 ```
-<img src="https://github.com/dinhtho/FacebookSDK/blob/master/image.png" width="800"/>
+<img src="https://github.com/dinhtho/FacebookSDK/blob/master/image.png" width="500"/>
+
+# Share link, Photo and Like
+
+<img src="https://github.com/dinhtho/FacebookSDK/blob/master/img3.png" width="500"/>

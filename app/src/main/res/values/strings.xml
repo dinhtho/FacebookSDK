@@ -17,7 +17,6 @@
     <string name="no_place_selected">&lt;No place selected&gt;</string>
     <string name="pick_seattle_place">Pick a Seattle Place</string>
     <string name="exception">Exception: %1$s</string>
-    <string name="facebook_client_token">91ddc71945c2c103a1444dd908cb7905</string>
 
 
 </resources>
